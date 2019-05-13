@@ -1,14 +1,16 @@
-const app = require('express')();
-const http = require('http').Server(app);
-const cors = require('cors');
-const io = require('socket.io')(http);
+const express = require('express');
+const http = require('http');
+const socketIO = require('socket.io');
 
-app.use(cors());
+const app = express();
+const server = http.createServer(app);
+const io = socketIO(server);
 
-io.on('connection', (socket) => {
-  console.log('a user connected');
+io.on("connection", (socket) => {
+  console.log("New client connected" + socket.id);
+  // console.log(socket);
 });
 
-app.listen({ port: 4000 }, () => {
+server.listen({ port: 4000 }, () => {
   console.info(`🛰 Server ready at http://localhost:4000`);
 });
