@@ -6,22 +6,16 @@ import HomePage from './pages/Home/Home';
 import './App.css';
 
 class App extends Component {
-  constructor () {
+  constructor() {
     super();
 
     this.state = {
-      response: false,
       endpoint: "http://127.0.0.1:4000",
     }
   }
 
   componentDidMount() {
-    const { endpoint } = this.state;
-    const socket = socketIOClient(endpoint);
-
-    socket.on('connection', () => {
-      console.log('connected');
-    })
+    const socket = socketIOClient(this.state.endpoint);
   }
 
   render() {
