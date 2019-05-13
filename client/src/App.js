@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import socketIOClient from 'socket.io-client';
 
+import HomePage from './pages/Home/Home';
 import './App.css';
 
 class App extends Component {
