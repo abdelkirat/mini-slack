@@ -41,7 +41,7 @@ class App extends Component {
             }
         };
 
-        ws = new WebSocket("ws://localhost:4000/");
+        ws = new WebSocket("ws://172.30.4.216:4000/");
 
     componentDidMount() {
         const nbUsersElem = document.getElementById("nbUsers");
@@ -59,7 +59,7 @@ class App extends Component {
         this.ws.onclose = () => {
             console.log('disconnected')
             this.setState({
-                ws: new WebSocket("ws://localhost:4000"),
+                ws: new WebSocket("ws://172.30.4.216:4000"),
             })
         }
 

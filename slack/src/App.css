@@ -11,9 +11,17 @@ body, html {
   padding: 0 !important;
 }
 
+.Messages-list {
+  padding: 0 !important;
+}
+
+.Messages-message {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
 .currentMember {
-  position: absolute;
-  right: 0;
+  justify-content: flex-end !important;
 }
 
 
