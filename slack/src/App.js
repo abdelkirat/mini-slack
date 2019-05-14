@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Input from './utils/Input';
 import Messages from './utils/Messages';
+import Room from "./utils/Room";
 
 function randomName() {
     const adjectives = ["autumn", "hidden", "bitter", "misty", "silent", "empty", "dry", "dark", "summer", "icy", "delicate", "quiet", "white", "cool", "spring", "winter", "patient", "twilight", "dawn", "crimson", "wispy", "weathered", "blue", "billowing", "broken", "cold", "damp", "falling", "frosty", "green", "long", "late", "lingering", "bold", "little", "morning", "muddy", "old", "red", "rough", "still", "small", "sparkling", "throbbing", "shy", "wandering", "withered", "wild", "black", "young", "holy", "solitary", "fragrant", "aged", "snowy", "proud", "floral", "restless", "divine", "polished", "ancient", "purple", "lively", "nameless"];
@@ -24,6 +25,7 @@ function randomId() {
 
 class App extends Component {
         state = {
+            connected: 0,
             message: '',
             messages: [
                 {
@@ -46,14 +48,19 @@ class App extends Component {
     componentDidMount() {
         const nbUsersElem = document.getElementById("nbUsers");
         this.ws.onopen = () => {
-            console.log('connected')
+            console.log('connected');
+            this.sendOldMessage();
         }
 
         this.ws.onmessage = (event) => {
-            const message = JSON.parse(event.data)
-            console.log(event.data);
-            nbUsersElem.innerHTML = event.data;
-            this.addMessage(message)
+            const message = JSON.parse(event.data);
+
+            if (message.number !== undefined) {
+                nbUsersElem.innerHTML = message.number;
+            }
+            if(message.text !== undefined) {
+                this.addMessage(message)
+            }
         };
 
         this.ws.onclose = () => {
@@ -75,9 +82,12 @@ class App extends Component {
         this.setState({messages: messages})
     }
 
+    sendOldMessage() {
+        this.ws.send(JSON.stringify(this.state.messages));
+    }
+
     onSendMessage = messageString => {
         const message = { text: messageString, member: this.state.member}
-        console.log(message);
         this.ws.send(JSON.stringify(message))
         this.addMessage(message)
     }
@@ -86,16 +96,20 @@ class App extends Component {
         return(
             <div className="App">
                 <div className="App-header">
-                    <h1>My Chat App</h1>
+                    <h1>Mini-slack</h1>
+                    <p><span id="nbUsers">0</span> utilisateurs en ligne</p>
                 </div>
-                <p>There is <span id="nbUsers">0</span> users connected.</p>
-                <Messages
-                    messages={this.state.messages}
-                    currentMember={this.state.member}
-                />
-                <Input
-                    onSendMessage={this.onSendMessage}
-                />
+                <div className="content-wrapper">
+                    <Room/>
+                    <Messages
+                        messages={this.state.messages}
+                        currentMember={this.state.member}
+                    />
+                    <Input
+                        onSendMessage={this.onSendMessage}
+                    />
+                </div>
+
             </div>
         );
     }

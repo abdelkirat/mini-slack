@@ -19,12 +19,13 @@ class Input extends Component{
 
     render() {
         return (
-            <div className="Input">
+            <div className="writer-wrapper">
                 <form onSubmit={e => this.onSubmit(e)}>
                     <input
                         onChange={e => this.onChange(e)}
                         value={this.state.textValue}
-                        type="text"
+                        type="textarea"
+                        className="message-input"
                         placeholder="Message"
                     />
                     <button>Send</button>
