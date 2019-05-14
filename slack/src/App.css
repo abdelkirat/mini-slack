@@ -1,0 +1,67 @@
+
+.App {
+  text-align: center;
+}
+
+body, html {
+  font-family: Arial, sans-serif;
+  width: 100%;
+  height: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+
+.login-container{
+  width: 400px;
+  order:2;
+  background-color: #1c5170;
+  border-radius: 20px;
+  padding-bottom: 50px;
+  padding-top: 50px;
+  box-shadow: -7px 7px 10px #000;
+}
+
+.form-control-design {
+  border-radius: 5px;
+  width: 95%;
+  height: 40px;
+  border-style: none;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.myform-group {
+  text-transform: uppercase;
+  color: white;
+}
+.loginTitle {
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  color: white;
+  text-align: center;
+}
+
+.container-login-chosse {
+  display: flex;
+  width: 100%;
+  align-items: center;;
+  flex-direction: column;
+}
+
+.btn-login-design {
+  background-color: #FFF;
+  border-radius: 10px;
+  border-style: none;
+  width: 250px;
+  height: 50px;
+  font-size: 20px;
+  font-family: arial;
+}
+
+.btn-login-design:hover{
+  background-color: #1c5170;
+  color: #FFF;
+  transition:background-color 0.3s;
+}
