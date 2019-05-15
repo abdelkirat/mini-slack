@@ -16,5 +16,4 @@ mongoose.connect(mongoURI, { useNewUrlParser: true})
 
 app.use('/api/messages', messagesRoutes);
 
-
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
