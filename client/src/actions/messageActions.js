@@ -15,12 +15,6 @@ export const getMessages = () => dispatch => {
 
 export const addMessage = (message, socket) => dispatch => {
   socket.emit('sendMessage', message);
-  // axios.post('/api/messages', message)
-  //   .then(res =>
-  //   dispatch({
-  //     type: ADD_MESSAGE,
-  //     payload: res.data
-  //   }));
 };
 
 export const listenToIncomingMessages = socket => dispatch => {
