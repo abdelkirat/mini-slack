@@ -1,0 +1,10 @@
+// Socket
+export const INIT_SOCKET = 'INIT_SOCKET';
+
+// Messages
+export const GET_MESSAGES = 'GET_MESSAGES';
+export const ADD_MESSAGE = 'ADD_MESSAGE';
+export const EDIT_MESSAGE = 'EDIT_MESSAGE';
+export const DELETE_MESSAGE = 'DELETE_MESSAGE';
+export const MESSAGES_LOADING = 'MESSAGES_LOADING';
+export const RECEIVED_INCOMMING_MESSAGE = 'RECEIVED_INCOMMING_MESSAGE';
