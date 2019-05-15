@@ -1,0 +1,29 @@
+{
+  "name": "mini-slack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start:server": "node server.js",
+    "start:server:dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abdelkirat/mini-slack.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abdelkirat/mini-slack/issues"
+  },
+  "homepage": "https://github.com/abdelkirat/mini-slack#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "concurrently": "^4.1.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.5.8"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.0"
+  }
+}
