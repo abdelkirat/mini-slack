@@ -4,6 +4,8 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { bindActionCreators } from 'redux';
+import Icon from '@mdi/react';
+import { mdiSend } from '@mdi/js';
 
 import { addMessage, getMessages, listenToIncomingMessages } from '../../actions/messageActions';
 
@@ -13,7 +15,7 @@ class MessageList extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { socket: oldSocket} = prevProps;
+    const { socket: oldSocket } = prevProps;
     const { socket: newSocket } = this.props;
 
     if (newSocket && !oldSocket) {
@@ -28,12 +30,20 @@ class MessageList extends Component {
   };
 
   styles = {
+    input: {
+      borderRadius: 0,
+      height: 'calc(1.5em + .75rem + 5px)',
+      marginTop: '-1px'
+    },
+    button: {
+      borderRadius: 0,
+    },
     messages: {
       display: 'flex',
       minHeight: '75vh',
       maxHeight: '75vh',
       overflowX: 'scroll',
-      border: '1px solid'
+      border: '1px solid #ced4da'
     }
   };
 
@@ -76,10 +86,11 @@ class MessageList extends Component {
         </ListGroup>
         <Form onSubmit={this.onSubmit}>
           <Row form>
-            <Col md={11}>
+            <Col md={11} style={{ marginRight: 0, paddingRight: 0 }}>
               <FormGroup>
                 <Input
                   id="message"
+                  style={this.styles.input}
                   type="text"
                   name="message"
                   onChange={this.onChange}
@@ -89,8 +100,19 @@ class MessageList extends Component {
               </FormGroup>
             </Col>
 
-            <Col md={1}>
-              <Button block>Send</Button>
+            <Col md={1} style={{ marginLeft: 0, paddingLeft: 0 }}>
+              <Button
+                block
+                style={this.styles.button}
+              >
+                <Icon path={mdiSend}
+                      size={1}
+                      horizontal
+                      vertical
+                      rotate={180}
+                      color="white"
+                />
+              </Button>
             </Col>
           </Row>
         </Form>
