@@ -9,7 +9,6 @@ import ChatComponent from './components/Chat';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import './main.scss';
 
 class App extends Component {
   componentDidMount() {
