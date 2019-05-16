@@ -1,3 +1,6 @@
 module.exports = {
   mongoURI: 'mongodb://<dbUser>:<dbPassword>@<dbHost>:<dbPort>/<dbName>'
+
+  // if you use :whale:
+  // mongoURI: 'mongodb://localhost:57256/slack'
 };
