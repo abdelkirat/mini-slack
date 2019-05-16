@@ -15,3 +15,8 @@
     opacity: 0.01;
     transition: opacity 1000ms ease-in;
 }
+
+.form-control:focus {
+    border-color: #ced4da;
+    box-shadow: none;
+}
