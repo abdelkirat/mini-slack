@@ -19,7 +19,6 @@ export const addMessage = (message, socket) => dispatch => {
 
 export const listenToIncomingMessages = socket => dispatch => {
   socket.on('newMessage', (message) => {
-    console.log(message);
     dispatch({
       type: RECEIVED_INCOMMING_MESSAGE,
       payload: message
