@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  mongoDB:
+    image: mongo:4
+    container_name: mongoDB
+    ports:
+      - "57256:27017"
+    restart: "no"
