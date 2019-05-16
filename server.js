@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-
+const path = require('path');
 const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
@@ -14,7 +14,10 @@ const messagesRoutes = require('./routes/api/messages');
 
 app.use(bodyParser.json());
 
-mongoose.connect(mongoURI, { useNewUrlParser: true})
+mongoose.connect(mongoURI, {
+  useNewUrlParser: true,
+  useCreateIndex: true
+})
   .then(() => console.log('MongoDB connected...'))
   .catch(err => console.log(err));
 
