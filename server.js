@@ -6,8 +6,6 @@ const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
 const PORT = process.env.NODE_PORT || 5000;
-const config = require('config');
-const auth = require('./middleware/auth');
 // Models
 const MessageModel = require('./models/Message');
 
