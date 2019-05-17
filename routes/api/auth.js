@@ -64,7 +64,7 @@ router.post('/register', [
   newUser.save().then(user => {
     jwt.sign(
       { id: user.id },
-      config.get('jwtSecret') || process.env.JWT,
+      config.get('jwtSecret'),
       { expiresIn: 3600 },
       (err, token) => {
         if (err) throw err;
@@ -106,7 +106,7 @@ router.post('/login', [
 
         jwt.sign(
           { id: user.id },
-          config.get('jwtSecret') || process.env.JWT,
+          config.get('jwtSecret'),
           { expiresIn: 3600 },
           (err, token) => {
             if (err) throw err;

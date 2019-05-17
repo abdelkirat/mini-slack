@@ -17,7 +17,7 @@ const messagesRoutes = require('./routes/api/messages');
 
 app.use(express.json());
 
-mongoose.connect(config.get('mongoURI') || process.env.MONGO_URI, {
+mongoose.connect(config.get('mongoURI'), {
   useNewUrlParser: true,
   useCreateIndex: true
 })
