@@ -55,6 +55,7 @@ class MessageList extends Component {
     e.preventDefault();
 
     const newMessage = {
+      user: this.props.auth.user.username,
       message: this.state.message
     };
 
@@ -65,7 +66,6 @@ class MessageList extends Component {
   render() {
     const { messages } = this.props;
     const { loading } = messages;
-
     return (
       <Container>
         <ListGroup id="messages-list" style={this.styles.messages}>
@@ -121,9 +121,10 @@ class MessageList extends Component {
   }
 }
 
-const mapStateToProps = ({ message, socket: socketReducer }) => ({
+const mapStateToProps = ({ auth, message, socket: socketReducer }) => ({
   messages: message.messages,
-  socket: socketReducer.socket
+  socket: socketReducer.socket,
+  auth
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../../middleware/auth');
 
 const Messages = require('../../models/Message');
 /**
@@ -18,7 +19,7 @@ router.get('/', (req, res, next) => {
  * @desc    Add new message
  * @access  public
  */
-router.post('/', (req, res, next) => {
+router.post('/', auth, (req, res, next) => {
   const newMessage = new Messages({
     user: req.body.username,
     message: req.body.message
@@ -32,7 +33,7 @@ router.post('/', (req, res, next) => {
  * @desc    Update message
  * @access  public
  */
-router.put('/:id', (req, res, next) => {
+router.put('/:id', auth, (req, res, next) => {
   Messages.findById(req.params.id)
     .then(message => {
       message.message = req.body.message;
@@ -48,7 +49,7 @@ router.put('/:id', (req, res, next) => {
  * @desc    Delete one message
  * @access  public
  */
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', auth, (req, res, next) => {
   Messages.findById(req.params.id)
     .then(message => {
       message.isDeleted = true;

@@ -2,7 +2,7 @@
 
 # dependencies
 .idea
-/config/keys.js
+/config/default.json
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json

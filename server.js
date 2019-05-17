@@ -1,20 +1,23 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
 const PORT = process.env.NODE_PORT || 5000;
-const mongoURI = require('./config/keys').mongoURI;
-
+const config = require('config');
+const auth = require('./middleware/auth');
+// Models
 const MessageModel = require('./models/Message');
+
+// Routes
+const authRoutes = require('./routes/api/auth');
 const messagesRoutes = require('./routes/api/messages');
 
-app.use(bodyParser.json());
+app.use(express.json());
 
-mongoose.connect(mongoURI, {
+mongoose.connect(config.get('mongoURI') || process.env.MONGO_URI, {
   useNewUrlParser: true,
   useCreateIndex: true
 })
@@ -24,18 +27,18 @@ mongoose.connect(mongoURI, {
 io.on('connection', socket => {
   console.log('Client connected.');
   socket.on('sendMessage', message => {
-    const newMessage = new MessageModel({
-      user: '',
-      message: message.message
-    });
+      const newMessage = new MessageModel({
+        user: message.user,
+        message: message.message
+      });
 
-    newMessage.save().then(message => io.sockets.emit('newMessage', message));
-
+      newMessage.save().then(message => io.sockets.emit('newMessage', message));
   });
   socket.on('disconnect', () => console.log('Client disconnected.'));
 });
 
 app.use('/api/messages', messagesRoutes);
+app.use('/api/auth', authRoutes);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
