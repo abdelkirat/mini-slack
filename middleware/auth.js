@@ -7,9 +7,9 @@ function auth(req, res, next) {
   if (!token) return res.status(401).json({ msg: 'No token, authorisation denied' });
 
   try {
-    req.user = jwt.verify(token, config.get('jwtSecret'));
+    req.user = jwt.verify(token, process.env.JWT_TOKEN);
     next();
-  } catch(e) {
+  } catch (e) {
     res.status(401).json({ msg: 'Token is not valid' });
   }
 }
