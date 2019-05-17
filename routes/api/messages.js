@@ -17,11 +17,12 @@ router.get('/', (req, res, next) => {
 /**
  * @route   POST api/messages
  * @desc    Add new message
- * @access  public
+ * @access  private
  */
 router.post('/', auth, (req, res, next) => {
+  console.log(req.body);
   const newMessage = new Messages({
-    user: req.body.username,
+    user: req.body.user,
     message: req.body.message
   });
 

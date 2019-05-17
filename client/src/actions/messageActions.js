@@ -13,7 +13,7 @@ export const getMessages = () => dispatch => {
     });
 };
 
-export const addMessage = (message, socket) => dispatch => {
+export const addMessage = (message, socket) => {
   socket.emit('sendMessage', message);
 };
 

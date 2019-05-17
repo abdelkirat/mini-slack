@@ -13,6 +13,11 @@ export default function(state = initialState, action) {
         messages: action.payload,
         loading: false
       };
+    case ADD_MESSAGE:
+      return {
+        ...state,
+        messages: [...state.messages, action.payload]
+      };
     case MESSAGES_LOADING:
       return {
         ...state,

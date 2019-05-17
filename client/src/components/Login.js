@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux';
 
 import { login } from '../actions/authActions';
 import { clearErrors } from '../actions/errorActions';
-import { Redirect, Router, br } from 'react-router-dom';
 
 class Login extends Component {
   state = {
