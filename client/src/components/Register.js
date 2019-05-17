@@ -19,7 +19,6 @@ import { bindActionCreators } from 'redux';
 
 import { register } from '../actions/authActions';
 import { clearErrors } from '../actions/errorActions';
-import { Redirect, Router } from 'react-router-dom';
 
 class Register extends Component {
   state = {
