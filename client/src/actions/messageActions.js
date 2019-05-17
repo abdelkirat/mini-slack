@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { MESSAGES_LOADING, ADD_MESSAGE, DELETE_MESSAGE, GET_MESSAGES, EDIT_MESSAGES, RECEIVED_INCOMMING_MESSAGE } from './types';
+import { tokenConfig } from './authActions';
 
 export const getMessages = () => dispatch => {
   dispatch(setMessagesLoading());
@@ -13,7 +14,7 @@ export const getMessages = () => dispatch => {
     });
 };
 
-export const addMessage = (message, socket) => {
+export const addMessage = (message, socket) => dispatch => {
   socket.emit('sendMessage', message);
 };
 
